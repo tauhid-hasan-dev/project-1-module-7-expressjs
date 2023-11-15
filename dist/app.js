@@ -8,7 +8,12 @@ const app = (0, express_1.default)();
 // parsers
 app.use(express_1.default.json());
 app.use(express_1.default.text());
-app.get('/', (req, res) => {
+const logger = (req, res, next) => {
+    console.log(req.url, req.method, req.hostname);
+    next();
+};
+app.get('/', logger, (req, res) => {
+    console.log(req.query.email);
     res.send('Hello this is tazani');
 });
 app.post("/", (req, res) => {
