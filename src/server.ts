@@ -7,7 +7,7 @@ let server : Server;
 
 async function main(){
    server = app.listen(PORT, () => {
-        console.log(`Example app listening on port ${PORT}`)
+        console.log(`Example app listening onsss port ${PORT}`)
       })
 }
 
