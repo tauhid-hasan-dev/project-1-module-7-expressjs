@@ -21,8 +21,16 @@ userRouter.get('/api/v1/users/create-user-info', (req : Request, res: Response) 
 })
 
 const logger = (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.url, req.method, req.hostname);
-    next()
+
+    try {
+        res.send(something)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({
+            success : false,
+            message: "Error is happened",
+        })
+    }
 }
 
 app.get('/', logger, (req, res) => {
