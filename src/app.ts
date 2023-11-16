@@ -5,6 +5,21 @@ const app = express()
 app.use(express.json())
 app.use(express.text());
 
+const userRouter = express.Router();
+
+app.use("/", userRouter);
+
+userRouter.get('/api/v1/users/create-user-info', (req : Request, res: Response) => {
+    
+    const user = req.body;
+    console.log(user);
+    res.json({
+        success: true,
+        message: 'User is created successfully',
+        data: user,
+    })
+})
+
 const logger = (req: Request, res: Response, next: NextFunction) => {
     console.log(req.url, req.method, req.hostname);
     next()
@@ -12,7 +27,7 @@ const logger = (req: Request, res: Response, next: NextFunction) => {
 
 app.get('/', logger, (req, res) => {
     console.log(req.query.email);
-    res.send('Hello this is tazani');
+    res.send('Server is running for the project...');
 
 });
 
